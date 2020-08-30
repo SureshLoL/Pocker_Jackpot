@@ -5,14 +5,28 @@ using UnityEngine;
 public class InitialScreenScrip : MonoBehaviour
 {
     [SerializeField] GameObject ButtonCanvas;
-    void Start() 
+    [SerializeField] GameObject Buttons;
+    [SerializeField] GameObject PlayerName;
+    bool Working = true;
+    private void Update()
     {
-        Invoke("ButtonScreenLoading", 2f);
+        Invoke("PressKey", 0.5f);
+    }
+
+    private void PressKey()
+    {
+        if (Input.anyKey && Working)
+        {
+            print("Working");
+            ButtonScreenLoading();
+        }
     }
 
     void ButtonScreenLoading()
     {
         ButtonCanvas.SetActive(true);
+        PlayerName.SetActive(false);
+        Working = false;
     }
 
 }
