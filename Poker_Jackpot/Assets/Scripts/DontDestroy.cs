@@ -6,7 +6,9 @@ using UnityEngine.UI;
 
 public class DontDestroy : MonoBehaviour
 {
-    public string Name;
+    public string Name, RoomName; 
+    public bool Create = false, Join = false;
+
     // Start is called before the first frame update
     void Start()
     {

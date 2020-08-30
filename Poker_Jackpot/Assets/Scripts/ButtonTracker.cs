@@ -9,8 +9,9 @@ public class ButtonTracker : MonoBehaviour
     [SerializeField] GameObject Buttons;
     [SerializeField] GameObject PlayerName;
     [SerializeField] GameObject PlayerNameHolder;
+    [SerializeField] GameObject RoomName;
     [SerializeField] GameObject DontDestroy;
-    public string Playername;
+    public string Playername, Roomname;
 
 
     public void Play()
@@ -28,18 +29,24 @@ public class ButtonTracker : MonoBehaviour
         Application.Quit();
     }
 
-    public void Enter()
+    public void Create()
     {
-        Playername = PlayerNameHolder.GetComponent<Text>().text;
-        DontDestroy.GetComponent<DontDestroy>().Name = Playername;
-        SceneManager.LoadScene(1);
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Return) && PlayerNameHolder.GetComponent<Text>().text.Length != 0)
-        {
-            Enter();
-        }
+        DontDestroy.GetComponent<DontDestroy>().Create = true;
+        LoadLobby();
     }
 
+    public void join()
+    {
+        DontDestroy.GetComponent<DontDestroy>().Join = true;
+        LoadLobby();
+    }
+
+    private void LoadLobby()
+    {
+        Playername = PlayerNameHolder.GetComponent<Text>().text;
+        Roomname = RoomName.GetComponent<Text>().text;
+        DontDestroy.GetComponent<DontDestroy>().Name = Playername;
+        DontDestroy.GetComponent<DontDestroy>().RoomName = Roomname;
+        SceneManager.LoadScene(1);
+    }
 }
