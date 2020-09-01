@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - DontDestroy
+  - Network
   layers:
   - Default
   - TransparentFX

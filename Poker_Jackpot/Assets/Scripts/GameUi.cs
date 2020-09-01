@@ -5,6 +5,8 @@ using UnityEngine;
 public class GameUi : MonoBehaviour
 {
     [SerializeField] GameObject GameCanvas;
+    [SerializeField] GameObject AllCards;
+    
     void Start()
     {
         Invoke("GameCanvasFunction", 0.5f);
@@ -13,5 +15,7 @@ public class GameUi : MonoBehaviour
     void GameCanvasFunction()
     {
         GameCanvas.SetActive(true);
+        AllCards.SetActive(true);
+        
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class DontDestroy : MonoBehaviour
 {
-    public string Name, RoomName; 
-    public bool Create = false, Join = false;
+    public string Name; 
+    public bool PlayerNameBoll = false;
 
     // Start is called before the first frame update
     void Start()
@@ -16,9 +16,10 @@ public class DontDestroy : MonoBehaviour
     }
     private void Update()
     {
-        if(GameObject.FindGameObjectWithTag("Player"))
+        if (GameObject.FindGameObjectWithTag("Player") && !PlayerNameBoll)
         {
             GameObject.FindGameObjectWithTag("Player").GetComponent<Text>().text = Name;
+            PlayerNameBoll = true;
         }
     }
 
