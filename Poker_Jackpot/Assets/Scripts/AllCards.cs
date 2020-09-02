@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AllCards : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class AllCards : MonoBehaviour
     [SerializeField] GameObject DollyCars;
     public Sprite[] ShowAllRemingcards;
     public int[] SlecetdCardNumbers;
+    [SerializeField] GameObject joker;
+    [SerializeField] GameObject GameoverAndGAmewinCanvas;
+    bool settingCanvas = false;
+    [SerializeField] GameObject DrawTwxt;
 
     void Start()
     {
@@ -68,6 +73,67 @@ public class AllCards : MonoBehaviour
             DontUsefulForDolly = AllCArds[index];
             DollyCars.GetComponent<DollyCards>().DollyCardNumbers[i] = index;
             
+        }
+    }
+
+    public void DollyChangeCard()
+    {
+        Invoke("DollypickingAi", 2f);
+    }
+    public int kk = 0;
+    private void DollypickingAi()
+    {
+        kk++;
+        print("D");
+        for (int i = 0; i < 4; i++)
+        {
+            if (DollyCars.GetComponent<DollyCards>().pickingCardNumber == DollyCars.GetComponent<DollyCards>().DollyCardNumbers[i])
+            {
+                int index = UnityEngine.Random.Range(0, cardnumbers.Count - kk);
+                int temp = DollyCars.GetComponent<DollyCards>().DollyCardNumbers[i];
+                DollyCars.GetComponent<DollyCards>().DollyCardNumbers[i] = cardnumbers[index];
+                cardnumbers[index] = -1;
+                joker.GetComponent<SpriteRenderer>().sprite = AllCArds[temp];
+                Invoke("PlayerTurn", 0.5f);
+            }
+        }
+    }
+
+
+    private void PlayerTurn()
+    {
+        PlayerCards.GetComponent<PlayerCards>().playerchance = true;
+    }
+
+    public void PlayerCardChange()
+    {
+        kk++;
+        print("p");
+        for (int i = 0; i < 4; i++)
+        {
+            if (Card[i].GetComponent<CardManager>().CardisSelected)
+            {
+                joker.GetComponent<SpriteRenderer>().sprite = AllCArds[PlayerCards.GetComponent<PlayerCards>().Cardnumbers[i]];
+                int index = UnityEngine.Random.Range(0, cardnumbers.Count - kk);
+                int temp = PlayerCards.GetComponent<PlayerCards>().Cardnumbers[i];
+                PlayerCards.GetComponent<PlayerCards>().Cardnumbers[i] = cardnumbers[index];
+                PlayerCards.GetComponent<PlayerCards>().Cards[i] = AllCArds[cardnumbers[index]];
+                Card[i].GetComponent<SpriteRenderer>().sprite = AllCArds[cardnumbers[index]];
+                cardnumbers[index] = -1;
+                PlayerCards.GetComponent<PlayerCards>().playerchance = false;
+            }
+        }
+
+    }
+
+    private void Update()
+    {
+        if(kk == 5 && !settingCanvas)
+        {
+            print("CardsOver");
+            GameoverAndGAmewinCanvas.SetActive(true);
+            DrawTwxt.GetComponent<Text>().text = "It's a Draw...";
+            settingCanvas = true;
         }
     }
 
