@@ -111,7 +111,7 @@ public class AllCards : MonoBehaviour
         print("p");
         for (int i = 0; i < 4; i++)
         {
-            if (Card[i].GetComponent<CardManager>().CardisSelected)
+            if (Card[i].GetComponent<CardManager>().CardisSelected && kk<5)
             {
                 joker.GetComponent<SpriteRenderer>().sprite = AllCArds[PlayerCards.GetComponent<PlayerCards>().Cardnumbers[i]];
                 int index = UnityEngine.Random.Range(0, cardnumbers.Count - kk);

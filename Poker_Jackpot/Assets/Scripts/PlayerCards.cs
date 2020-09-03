@@ -27,6 +27,7 @@ public class PlayerCards : MonoBehaviour
 
     private void Update()
     {
+        settingOreder();
         SettingCardinDecesdingOrder();
         CallWinScreen();
     }

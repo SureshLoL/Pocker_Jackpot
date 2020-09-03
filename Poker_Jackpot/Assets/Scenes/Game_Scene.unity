@@ -2188,8 +2188,8 @@ MonoBehaviour:
   CardCanChangable: 00000000
   DollyChance: 0
   AllCards: {fileID: 1367674380}
-  GameOverAndGameWinCanvas: {fileID: 42501424}
-  GamelostText: {fileID: 0}
+  GameOverAndGameWinCanvas: {fileID: 1701319037}
+  GamelostText: {fileID: 42501424}
   pickingCardNumber: 0
 --- !u!1 &1423061515 stripped
 GameObject:
